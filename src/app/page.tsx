@@ -50,66 +50,101 @@ export default function HomePage() {
           
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
-              {/* Logo in hero */}
-              <div className="mb-8">
-                <img 
-                  src="/logo-full.svg" 
-                  alt="MindfulTech Logo" 
-                  className="w-24 h-24 mx-auto opacity-90"
-                />
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight tracking-tight">
-                AI Agents That Work<br />
-                While You Focus on Your Business
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-white/95 mb-6 max-w-5xl mx-auto leading-relaxed font-medium">
-                Intelligent AI agents for Tamarindo businesses—answering inquiries, booking appointments, and capturing leads 24/7 on WhatsApp.
-              </p>
-              
-              <p className="text-lg md:text-xl text-white/85 mb-8 max-w-4xl mx-auto leading-relaxed">
-                Save an hour daily, increase inquiry capture by 20-40%, and convert tourists into repeat customers—without complexity.
-              </p>
-              
-              <div className="mb-8">
-                <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white/90 text-sm font-medium">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-                  Built in Costa Rica • Available 24/7
+              {/* MindfulTech Brand */}
+              <div className="mb-10">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-teal-400 rounded-full blur-lg opacity-60"></div>
+                    <img 
+                      src="/logo-mark.svg" 
+                      alt="MindfulTech Logo" 
+                      className="relative w-16 h-16 mr-4 drop-shadow-2xl"
+                    />
+                  </div>
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-teal-400 blur-2xl opacity-40"></div>
+                    <h1 className="relative text-5xl md:text-7xl lg:text-8xl font-black tracking-wider">
+                      <span className="bg-gradient-to-r from-orange-400 via-white to-teal-400 bg-clip-text text-transparent drop-shadow-2xl">
+                        Mindful
+                      </span>
+                      <span className="bg-gradient-to-r from-teal-400 via-white to-orange-400 bg-clip-text text-transparent drop-shadow-2xl">
+                        Tech
+                      </span>
+                    </h1>
+                  </div>
+                </div>
+                <div className="flex items-center justify-center mb-3">
+                  <div className="w-24 h-1 bg-gradient-to-r from-orange-400 via-white to-teal-400 rounded-full shadow-lg"></div>
+                </div>
+                <div className="text-center">
+                  <p className="text-base md:text-lg text-white/90 font-semibold tracking-wide">
+                    AI-Powered Business Solutions
+                  </p>
                 </div>
               </div>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight tracking-tight">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-teal-400 blur-3xl opacity-30"></div>
+                  <span className="relative bg-gradient-to-r from-orange-400 via-white to-teal-400 bg-clip-text text-transparent drop-shadow-2xl">
+                    AI Agents That Work
+                  </span>
+                </div>
+                <br />
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-teal-400 to-orange-400 blur-2xl opacity-20"></div>
+                  <span className="relative text-white drop-shadow-2xl font-bold">
+                    While You Focus on Your Business
+                  </span>
+                </div>
+              </h2>
+              
+              <p className="text-lg md:text-xl text-white mb-4 max-w-5xl mx-auto leading-relaxed font-semibold drop-shadow-lg">
+                Intelligent AI agents for Costa Rican businesses—answering inquiries, booking appointments, and capturing leads 24/7 on WhatsApp.
+              </p>
+              
+              <p className="text-base md:text-lg text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed drop-shadow-md">
+                Save an hour daily, increase inquiry capture by 20-40%, and convert tourists into repeat customers—without complexity.
+              </p>
+              
+              <div className="mb-6">
+                <div className="inline-flex items-center bg-gradient-to-r from-white/20 to-white/10 backdrop-blur-md rounded-full px-8 py-4 text-white font-bold text-lg border border-white/30 shadow-2xl">
+                  <div className="w-3 h-3 bg-gradient-to-r from-green-400 to-teal-400 rounded-full mr-4 animate-pulse shadow-lg"></div>
+                  <span className="tracking-wide">Built in Costa Rica • Available 24/7</span>
+                </div>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
                 <a
                   href="https://wa.me/17208916563?text=Pura%20Vida%E2%80%94I%27d%20like%20a%2020-min%20setup%20for%20MindfulTech."
-                  className="bg-white text-slate-800 hover:bg-gray-100 font-semibold px-10 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-lg"
+                  className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-black px-12 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 text-xl tracking-wide uppercase"
                 >
                   Start Free Audit
                 </a>
                 
                 <a
                   href="https://wa.me/17208916563?text=Pura%20Vida%E2%80%94I%27d%20like%20a%2020-min%20setup%20for%20MindfulTech."
-                  className="bg-transparent border-2 border-white/80 text-white hover:bg-white/10 hover:border-white font-medium px-10 py-4 rounded-xl transition-all duration-300 text-lg"
+                  className="bg-transparent border-3 border-white text-white hover:bg-white/20 hover:border-white font-bold px-12 py-5 rounded-2xl transition-all duration-300 text-xl tracking-wide uppercase backdrop-blur-sm"
                 >
                   Hablar por WhatsApp
                 </a>
               </div>
               
-              <div className="flex flex-wrap items-center justify-center gap-8 text-white/80 text-sm font-medium">
-                <span className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="w-3 h-3 mr-3 bg-green-400 rounded-full"></div>
+              <div className="flex flex-wrap items-center justify-center gap-4 text-white text-sm font-bold">
+                <span className="flex items-center bg-white/20 backdrop-blur-md rounded-xl px-6 py-3 border border-white/30">
+                  <div className="w-4 h-4 mr-3 bg-green-400 rounded-full animate-pulse"></div>
                   WhatsApp Business
                 </span>
-                <span className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="w-3 h-3 mr-3 bg-blue-400 rounded-full"></div>
+                <span className="flex items-center bg-white/20 backdrop-blur-md rounded-xl px-6 py-3 border border-white/30">
+                  <div className="w-4 h-4 mr-3 bg-blue-400 rounded-full animate-pulse"></div>
                   DocuSign
                 </span>
-                <span className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="w-3 h-3 mr-3 bg-purple-400 rounded-full"></div>
+                <span className="flex items-center bg-white/20 backdrop-blur-md rounded-xl px-6 py-3 border border-white/30">
+                  <div className="w-4 h-4 mr-3 bg-purple-400 rounded-full animate-pulse"></div>
                   Stripe
                 </span>
-                <span className="flex items-center bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <div className="w-3 h-3 mr-3 bg-orange-400 rounded-full"></div>
+                <span className="flex items-center bg-white/20 backdrop-blur-md rounded-xl px-6 py-3 border border-white/30">
+                  <div className="w-4 h-4 mr-3 bg-orange-400 rounded-full animate-pulse"></div>
                   Plausible
                 </span>
               </div>
@@ -118,16 +153,18 @@ export default function HomePage() {
         </section>
         
         {/* Messaging Pillars Section */}
-        <section className="py-24 bg-white relative">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        <section className="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Why Tamarindo businesses choose us
+                Why Costa Rican businesses choose us
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                WhatsApp-nativo flows, bilingual templates, local compliance sensitivity, outcome pricing, and zero-fluff setup.
-              </p>
+              <div className="max-w-5xl mx-auto px-8">
+                <p className="text-lg text-gray-700 leading-relaxed" style={{wordBreak: 'normal', whiteSpace: 'normal'}}>
+                  WhatsApp-nativo flows, bilingual templates, Costa Rican compliance sensitivity, outcome pricing, and zero-fluff setup.
+                </p>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -173,16 +210,18 @@ export default function HomePage() {
         </section>
         
         {/* How It Works Section */}
-        <section className="py-24 bg-slate-50 relative">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+        <section className="py-24 bg-gradient-to-br from-white via-slate-50 to-blue-50 relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
                 How it works
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                We plug into how Tamarindo actually communicates. Done in a day, compounding results.
-              </p>
+              <div className="max-w-5xl mx-auto px-8">
+                <p className="text-lg text-gray-700 leading-relaxed" style={{wordBreak: 'normal', whiteSpace: 'normal'}}>
+                  We plug into how Tamarindo actually communicates. Done in a day, compounding results.
+                </p>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -218,16 +257,18 @@ export default function HomePage() {
         </section>
         
         {/* Services Grid */}
-        <section className="py-24 bg-white relative">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        <section className="py-24 bg-gradient-to-br from-teal-50 via-slate-50 to-white relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-300 to-transparent"></div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Perfect for Tamarindo businesses
+                Built for Costa Rican Businesses
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                WhatsApp-nativo flows, bilingual templates, local compliance sensitivity, outcome pricing, and zero-fluff setup.
-              </p>
+              <div className="max-w-5xl mx-auto px-8">
+                <p className="text-lg text-gray-700 leading-relaxed" style={{wordBreak: 'normal', whiteSpace: 'normal'}}>
+                  WhatsApp-nativo flows, bilingual templates, Costa Rican compliance sensitivity, outcome pricing, and zero-fluff setup.
+                </p>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -268,8 +309,8 @@ export default function HomePage() {
         </section>
         
         {/* Testimonial */}
-        <section className="py-24 bg-slate-50 relative">
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent"></div>
+        <section className="py-24 bg-gradient-to-br from-blue-50 via-slate-50 to-teal-50 relative">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <blockquote className="text-2xl md:text-3xl font-medium text-gray-800 mb-6">
               "More tours, fewer tabs. Pura vida."
@@ -285,11 +326,13 @@ export default function HomePage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-                Built for Tamarindo, by Tamarindo
+                Born in Tamarindo. Built for Costa Rica.
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                We understand beach time, WhatsApp culture, and the unique challenges of running a business in paradise.
-              </p>
+              <div className="max-w-5xl mx-auto px-8">
+                <p className="text-lg text-gray-700 leading-relaxed" style={{wordBreak: 'normal', whiteSpace: 'normal'}}>
+                  We understand Costa Rican business culture, WhatsApp-first communication, and the unique challenges of running a business from coast to capital.
+                </p>
+              </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
