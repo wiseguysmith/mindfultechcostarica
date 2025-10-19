@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
+/* Brand color tokens - our design system foundation */
 :root {
+  /* Brand colors */
+  --coral: #FF6A4A;
+  --blue: #2B8CBE;
+  --palm: #2C6E49;
+  --sand: #EBD8B7;
+  --charcoal: #2C2C2C;
+  --foam: #F8F9FA;
+  
+  /* Semantic colors */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #2C2C2C;
+  --muted: #6B7280;
+  --border: #E5E7EB;
+  --accent: #FF6A4A;
 }
 
 @theme inline {
+  /* Brand color palette */
+  --color-coral: var(--coral);
+  --color-blue: var(--blue);
+  --color-palm: var(--palm);
+  --color-sand: var(--sand);
+  --color-charcoal: var(--charcoal);
+  --color-foam: var(--foam);
+  
+  /* Semantic colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  
+  /* Border radius - consistent with brand guidelines */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  
+  /* Shadows - soft and subtle as specified */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-soft: 0 4px 20px -4px rgb(0 0 0 / 0.08);
+  
+  /* Transitions - smooth and consistent */
+  --transition-fast: 240ms ease-in-out;
+  --transition-normal: 320ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+  
+  /* Spacing scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles with our brand personality */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Heading styles with Space Grotesk */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom utility classes for our brand */
+.btn-primary {
+  @apply bg-coral hover:bg-blue text-white font-medium px-6 py-3 rounded-xl shadow-soft transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+  @apply bg-transparent border-2 border-coral text-coral hover:bg-coral hover:text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 ease-in-out;
+}
+
+.btn-ghost {
+  @apply text-charcoal hover:text-coral font-medium px-4 py-2 rounded-lg transition-colors duration-240 ease-in-out;
+}
+
+/* Card styles with our soft shadows */
+.card {
+  @apply bg-white rounded-xl shadow-soft border border-border/50 backdrop-blur-sm;
+}
+
+/* Hero gradient background */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+}
+
+/* Text gradient for headings */
+.text-gradient {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
