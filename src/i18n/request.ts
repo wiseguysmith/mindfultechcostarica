@@ -10,7 +10,7 @@ import { config } from '@/lib/config';
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
-  if (!config.i18n.locales.includes(locale as any)) {
+  if (!locale || !config.i18n.locales.includes(locale as any)) {
     // Default to English if invalid locale
     locale = config.i18n.defaultLocale;
   }
@@ -19,5 +19,6 @@ export default getRequestConfig(async ({ locale }) => {
     messages: (await import(`../messages/${locale}.json`)).default,
     timeZone: 'America/Costa_Rica', // Costa Rica timezone
     now: new Date(),
+    locale, // include locale to satisfy RequestConfig
   };
 });
