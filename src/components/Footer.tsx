@@ -162,3 +162,6 @@ export default async function Footer({ locale }: FooterProps) {
 }
 
 
+
+
+

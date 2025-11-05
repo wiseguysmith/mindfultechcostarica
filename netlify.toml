@@ -1,0 +1,16 @@
+# Netlify Configuration for MindfulTech
+# 
+# As your CTO mentor, I'm showing you how to configure Netlify for Next.js deployment.
+# The @netlify/plugin-nextjs automatically handles routing, so we don't need manual redirects.
+
+[build]
+  command = "npm run build"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Environment variables can be set in Netlify dashboard
+# For example:
+# [build.environment]
+#   NEXT_PUBLIC_SITE_URL = "https://mindfultech.services"
+
