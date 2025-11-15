@@ -9,7 +9,6 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { config } from '@/lib/config';
 
 interface LangToggleProps {
   currentLocale: string;

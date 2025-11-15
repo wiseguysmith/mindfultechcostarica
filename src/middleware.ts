@@ -1,31 +1,27 @@
-import createMiddleware from 'next-intl/middleware';
+// Temporarily disabled next-intl middleware to fix build issues
+// TODO: Re-enable once next-intl is properly configured
+// import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
-import { config as appConfig } from '@/lib/config';
+// import { config as appConfig } from '@/lib/config';
 
 /**
- * Middleware for next-intl
+ * Middleware - Temporarily simplified to pass through all requests
  * 
- * As your CTO mentor, I'm showing you how to configure middleware to exclude
- * certain routes from locale handling. The /us route needs to be excluded
- * because it's not a localized route.
+ * As your CTO mentor: We've temporarily disabled next-intl middleware
+ * to isolate the build error. Once the build works, we'll re-enable it
+ * with proper route exclusions.
  */
 
-const intlMiddleware = createMiddleware({
-  locales: appConfig.i18n.locales,
-  defaultLocale: appConfig.i18n.defaultLocale,
-  localePrefix: 'as-needed' // Only prefix non-default locale
-});
+// const intlMiddleware = createMiddleware({
+//   locales: appConfig.i18n.locales,
+//   defaultLocale: appConfig.i18n.defaultLocale,
+//   localePrefix: 'as-needed'
+// });
 
 export default function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  
-  // Exclude /us route from locale handling - let Next.js handle it normally
-  if (pathname.startsWith('/us')) {
-    return NextResponse.next();
-  }
-  
-  // Apply next-intl middleware to all other routes
-  return intlMiddleware(request);
+  // Temporarily pass through all requests
+  // This allows /us and /es routes to work without next-intl processing
+  return NextResponse.next();
 }
 
 export const config = {

@@ -6,7 +6,8 @@
  * mini-FAQ section and clean organization.
  */
 
-import { getTranslations } from 'next-intl/server';
+// Temporarily disabled next-intl to fix build
+// import { getTranslations } from 'next-intl/server';
 import { config } from '@/lib/config';
 import CTAWhatsApp from './CTAWhatsApp';
 
@@ -15,7 +16,16 @@ interface FooterProps {
 }
 
 export default async function Footer({ locale }: FooterProps) {
-  const t = await getTranslations();
+  // Temporarily use hardcoded text until next-intl is fixed
+  // const t = await getTranslations();
+  const t = (key: string) => {
+    const translations: Record<string, string> = {
+      'footer.tagline': 'Let the agent handle that.',
+      'footer.description': 'Bilingual AI agents that answer, book, and follow up—quietly.',
+      'footer.copyright': `© ${new Date().getFullYear()} ${config.brand.name}. All rights reserved.`,
+    };
+    return translations[key] || key;
+  };
   
   return (
     <footer className="bg-charcoal text-white">

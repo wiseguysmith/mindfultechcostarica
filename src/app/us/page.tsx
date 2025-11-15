@@ -1,39 +1,43 @@
+/**
+ * MindfulTech.services — USA Version Landing Page (Refactored)
+ * 
+ * As your CTO mentor: Notice how we've transformed this page from 630+ lines
+ * of inline JSX into a clean, maintainable structure using reusable components.
+ * 
+ * Key improvements:
+ * 1. Separation of concerns - data (content) is separate from presentation (components)
+ * 2. Reusability - same components work for US and ES pages
+ * 3. Maintainability - update a component once, it updates everywhere
+ * 4. Testability - components can be tested in isolation
+ * 5. Consistency - design system ensures visual harmony
+ */
+
 'use client';
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import { 
-  Check, 
-  ArrowRight, 
   Sparkles, 
   Shield, 
   Clock, 
-  Phone, 
-  Mail, 
-  Globe, 
+  MessageSquare,
   Car, 
   Utensils, 
   Stethoscope, 
   BriefcaseBusiness, 
-  MessageSquare, 
   Twitter, 
   Instagram, 
-  Linkedin 
+  Linkedin,
+  ArrowRight
 } from "lucide-react";
+import HeroSection from '@/components/HeroSection';
+import FeatureGrid from '@/components/FeatureGrid';
+import ContentGrid from '@/components/ContentGrid';
+import IndustryHighlightSection from '@/components/IndustryHighlightSection';
+import PricingSection from '@/components/PricingSection';
+import FAQSection from '@/components/FAQSection';
+import ContactSection from '@/components/ContactSection';
 
-/**
- * MindfulTech.services — USA Version Landing Page (v3)
- * 
- * As your CTO mentor, I'm showing you how to create a fully functional landing page
- * using only Tailwind CSS (no external UI component libraries). Notice how we:
- * 1. Use CSS variables for theming (scoped to this page)
- * 2. Convert component libraries to plain HTML + Tailwind classes
- * 3. Implement responsive design with Tailwind's grid system
- * 4. Use framer-motion for smooth animations
- * 5. Maintain accessibility with semantic HTML and ARIA labels
- */
-
-// Brand palette as CSS variables
+// Brand palette as CSS variables - keeping for backward compatibility
 const BrandStyle = () => (
   <style dangerouslySetInnerHTML={{
     __html: `
@@ -53,16 +57,6 @@ const BrandStyle = () => (
       .mt-accent {
         color: var(--mt-teal);
       }
-      .mt-btn {
-        background: var(--mt-teal);
-        color: #062a22;
-      }
-      .mt-btn:hover {
-        filter: brightness(0.95);
-      }
-      .mt-outline {
-        border-color: var(--mt-teal);
-      }
       .selection\\:bg-amber-200\\/60 ::selection {
         background-color: rgba(251, 191, 36, 0.6);
       }
@@ -70,30 +64,31 @@ const BrandStyle = () => (
   }} />
 );
 
-const features = [
+// Hero section features
+const heroFeatures = [
   { 
     icon: <MessageSquare className="w-6 h-6"/>, 
     title: "Digital Workers (AI Agents)", 
-    desc: "Inbox triage, lead capture, booking, follow‑ups across email, SMS, and chat.", 
+    description: "Inbox triage, lead capture, booking, follow‑ups across email, SMS, and chat.", 
   },
   { 
     icon: <Shield className="w-6 h-6"/>, 
     title: "Security‑First Defaults", 
-    desc: "Role‑based access, audit trails, least‑privilege credentials. TCPA/HIPAA aware where relevant.", 
+    description: "Role‑based access, audit trails, least‑privilege credentials. TCPA/HIPAA aware where relevant.", 
   },
   { 
     icon: <Clock className="w-6 h-6"/>, 
     title: "Automation That Prints Time™", 
-    desc: "HubSpot/Google + n8n/Zapier to remove 10+ hours/week from busywork.", 
+    description: "HubSpot/Google + n8n/Zapier to remove 10+ hours/week from busywork.", 
   },
   { 
     icon: <Sparkles className="w-6 h-6"/>, 
     title: "Speed‑to‑Lead < 60s", 
-    desc: "Website chat + SMS handoff + CRM routing so hot leads never cool.", 
+    description: "Website chat + SMS handoff + CRM routing so hot leads never cool.", 
   },
 ];
 
-// Primary US verticals
+// Industry verticals
 const industries = [
   { icon: <Utensils className="w-5 h-5"/>, label: "Restaurants" },
   { icon: <Stethoscope className="w-5 h-5"/>, label: "MedSpas & Clinics" },
@@ -101,6 +96,7 @@ const industries = [
   { icon: <BriefcaseBusiness className="w-5 h-5"/>, label: "Professional Services (Law/CPA)" },
 ];
 
+// Pricing plans
 const plans = [
   { 
     name: "Starter", 
@@ -114,6 +110,8 @@ const plans = [
       "Email/SMS templates + playbooks",
     ], 
     cta: "Book a 20‑min Fit Call", 
+    ctaHref: "https://calendly.com/mindfultechnology",
+    featured: false,
   },
   { 
     name: "Pro", 
@@ -127,6 +125,7 @@ const plans = [
       "Bi‑weekly optimization sprints",
     ], 
     cta: "Start Your Build Sprint", 
+    ctaHref: "https://calendly.com/mindfultechnology",
     featured: true, 
   },
   { 
@@ -141,10 +140,12 @@ const plans = [
       "Dedicated success manager",
     ], 
     cta: "Talk to Solutions Architect", 
+    ctaHref: "https://calendly.com/mindfultechnology",
+    featured: false,
   },
 ];
 
-// Dealer add‑ons block
+// Dealer add‑ons
 const dealerPlans = [
   { 
     name: "Dealer Add‑On", 
@@ -170,50 +171,27 @@ const dealerPlans = [
   },
 ];
 
+// FAQ data
 const faqs = [
   { 
-    q: "What does implementation look like?", 
-    a: "Week 1: discovery + stack mapping. Week 2: agent setup + CRM wiring. Week 3: go‑live with guardrails and iterate.", 
+    question: "What does implementation look like?", 
+    answer: "Week 1: discovery + stack mapping. Week 2: agent setup + CRM wiring. Week 3: go‑live with guardrails and iterate.", 
   },
   { 
-    q: "Will this replace my team?", 
-    a: "No — it gives your team a jetpack. Admin chores drop; humans handle nuance and relationships.", 
+    question: "Will this replace my team?", 
+    answer: "No — it gives your team a jetpack. Admin chores drop; humans handle nuance and relationships.", 
   },
   { 
-    q: "What tools do you support?", 
-    a: "HubSpot, Google Workspace, Slack, Notion, Aircall, Twilio, WhatsApp Business, Meta, LinkedIn, Stripe, Shopify, Calendly, Supabase, and more.", 
+    question: "What tools do you support?", 
+    answer: "HubSpot, Google Workspace, Slack, Notion, Aircall, Twilio, WhatsApp Business, Meta, LinkedIn, Stripe, Shopify, Calendly, Supabase, and more.", 
   },
   { 
-    q: "Dealership CRMs?", 
-    a: "We can integrate with VinSolutions/DriveCentric/DealerSocket via API, email parser, or webhook bridges.", 
+    question: "Dealership CRMs?", 
+    answer: "We can integrate with VinSolutions/DriveCentric/DealerSocket via API, email parser, or webhook bridges.", 
   },
 ];
 
-const Social = () => (
-  <div className="flex items-center gap-3">
-    <a href="https://twitter.com/yourhandle" aria-label="X/Twitter" className="hover:opacity-80 transition-opacity">
-      <Twitter className="w-5 h-5"/>
-    </a>
-    <a href="https://instagram.com/yourhandle" aria-label="Instagram" className="hover:opacity-80 transition-opacity">
-      <Instagram className="w-5 h-5"/>
-    </a>
-    <a href="https://www.linkedin.com/company/mindful-tech" aria-label="LinkedIn" className="hover:opacity-80 transition-opacity">
-      <Linkedin className="w-5 h-5"/>
-    </a>
-  </div>
-);
-
-const List = ({ items }: { items: string[] }) => (
-  <ul className="space-y-2">
-    {items.map((x, i) => (
-      <li key={i} className="flex items-start gap-2">
-        <Check className="w-5 h-5 mt-0.5 flex-shrink-0 text-[var(--mt-teal)]"/> 
-        <span>{x}</span>
-      </li>
-    ))}
-  </ul>
-);
-
+// Two-step lead form component
 function LeadFormTwoStep() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -234,14 +212,13 @@ function LeadFormTwoStep() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic here
     console.log('Form submitted:', formData);
     alert('Thank you! We\'ll reply same day with next steps.');
   };
 
   return (
     <div className="bg-white rounded-3xl shadow-lg border border-gray-200 p-6 md:p-8">
-      <h3 className="text-2xl font-semibold text-[var(--mt-navy)] mb-4">Quick Start — 2‑Step Lead Form</h3>
+      <h3 className="text-2xl font-semibold text-[#0F2A3F] mb-4">Quick Start — 2‑Step Lead Form</h3>
       <form onSubmit={handleSubmit}>
         {step === 1 && (
           <div className="space-y-3">
@@ -252,7 +229,7 @@ function LeadFormTwoStep() {
               required
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--mt-teal)] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2DB6A3] focus:border-transparent"
             />
             <input 
               name="name"
@@ -261,7 +238,7 @@ function LeadFormTwoStep() {
               required
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--mt-teal)] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2DB6A3] focus:border-transparent"
             />
             <input 
               name="company"
@@ -270,17 +247,17 @@ function LeadFormTwoStep() {
               required
               value={formData.company}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--mt-teal)] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2DB6A3] focus:border-transparent"
             />
             <button 
               type="button"
               onClick={() => setStep(2)} 
-              className="w-full mt-4 px-6 py-3 rounded-2xl mt-btn text-white font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full mt-4 px-6 py-3 rounded-2xl bg-[#2DB6A3] text-white font-semibold hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2"
             >
               Next <ArrowRight className="w-4 h-4"/>
             </button>
             <div className="text-xs text-slate-500 mt-4">
-              By continuing you agree to our <a className="underline hover:text-[var(--mt-teal)]" href="#">Privacy</a> & <a className="underline hover:text-[var(--mt-teal)]" href="#">Terms</a>.
+              By continuing you agree to our <a className="underline hover:text-[#2DB6A3]" href="#" target="_blank" rel="noopener noreferrer">Privacy</a> & <a className="underline hover:text-[#2DB6A3]" href="#" target="_blank" rel="noopener noreferrer">Terms</a>.
             </div>
           </div>
         )}
@@ -292,7 +269,7 @@ function LeadFormTwoStep() {
               placeholder="Phone (optional)" 
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--mt-teal)] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2DB6A3] focus:border-transparent"
             />
             <input 
               name="website"
@@ -300,7 +277,7 @@ function LeadFormTwoStep() {
               placeholder="Website (optional)" 
               value={formData.website}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--mt-teal)] focus:border-transparent"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2DB6A3] focus:border-transparent"
             />
             <textarea 
               name="message"
@@ -309,16 +286,16 @@ function LeadFormTwoStep() {
               value={formData.message}
               onChange={handleInputChange}
               rows={4}
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[var(--mt-teal)] focus:border-transparent resize-none"
+              className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2DB6A3] focus:border-transparent resize-none"
             />
             <button 
               type="submit"
-              className="w-full mt-4 px-6 py-3 rounded-2xl mt-btn text-white font-semibold hover:shadow-lg transition-all duration-300"
+              className="w-full mt-4 px-6 py-3 rounded-2xl bg-[#2DB6A3] text-white font-semibold hover:opacity-90 transition-all duration-200"
             >
               Submit
             </button>
             <div className="text-xs text-slate-500 mt-4">
-              We'll reply same day with next steps.
+              We&apos;ll reply same day with next steps.
             </div>
           </div>
         )}
@@ -327,16 +304,48 @@ function LeadFormTwoStep() {
   );
 }
 
+// Social links component
+const Social = () => (
+  <div className="flex items-center gap-3">
+    <a 
+      href="https://twitter.com/yourhandle" 
+      aria-label="X/Twitter" 
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:opacity-80 transition-opacity"
+    >
+      <Twitter className="w-5 h-5"/>
+    </a>
+    <a 
+      href="https://instagram.com/yourhandle" 
+      aria-label="Instagram" 
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:opacity-80 transition-opacity"
+    >
+      <Instagram className="w-5 h-5"/>
+    </a>
+    <a 
+      href="https://www.linkedin.com/company/mindful-tech" 
+      aria-label="LinkedIn" 
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:opacity-80 transition-opacity"
+    >
+      <Linkedin className="w-5 h-5"/>
+    </a>
+  </div>
+);
+
 export default function USA_LandingPage() {
-  return (
-    <>
-      <BrandStyle />
-      
-      {/* SEO JSON-LD */}
-      <script 
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+  // Inject JSON-LD structured data (client-side only)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'us-json-ld';
+    script.text = JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "Mindful Tech",
@@ -356,229 +365,133 @@ export default function USA_LandingPage() {
               "contactType": "sales",
               "email": "info@mindfultech.services"
             }]
-          })
-        }} 
-      />
+    });
+    document.head.appendChild(script);
+    return () => {
+      const existingScript = document.getElementById('us-json-ld');
+      if (existingScript && document.head.contains(existingScript)) {
+        document.head.removeChild(existingScript);
+      }
+    };
+  }, []);
+
+  return (
+    <>
+      <BrandStyle />
 
       <div className="min-h-screen mt-gradient text-slate-900 selection:bg-amber-200/60">
-        {/* Hero */}
-        <section className="max-w-7xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--mt-teal)]/15 text-[var(--mt-navy)] text-xs font-medium">
-                <Sparkles className="w-4 h-4"/> 
-                USA Edition
-              </span>
-              <h1 className="text-4xl md:text-5xl font-semibold leading-tight mt-4 mt-primary">
-                Build the Minds That Work for You.
-              </h1>
-              <p className="mt-4 text-lg text-slate-700">
-                Book more calls, close more deals, and let digital workers handle the busywork.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a 
-                  href="https://calendly.com/mindfultechnology" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="px-6 py-3 rounded-2xl mt-btn text-white font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2"
-                >
-                  Book a 20‑min Fit Call <ArrowRight className="w-4 h-4"/>
-                </a>
-                <a 
-                  href="#lead"
-                  className="px-6 py-3 rounded-2xl border-2 mt-outline text-[var(--mt-teal)] hover:bg-[var(--mt-teal)]/10 font-semibold transition-all duration-300"
-                >
-                  Quick Lead Form
-                </a>
-                <a 
-                  href="tel:+17208916563"
-                  className="px-6 py-3 rounded-2xl border-2 mt-outline text-[var(--mt-teal)] hover:bg-[var(--mt-teal)]/10 font-semibold transition-all duration-300"
-                >
-                  Call +1 (720) 891‑6563
-                </a>
-              </div>
-              <div className="mt-6 flex items-center gap-6 text-sm text-slate-600">
-                <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4"/> 
-                  Guardrails on by default
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4"/> 
-                  Live in ~3 weeks
-                </div>
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <div className="bg-white/70 backdrop-blur border rounded-3xl shadow-xl p-6">
-                <div className="grid grid-cols-2 gap-4">
-                  {features.map((f, i) => (
-                    <div key={i} className="bg-white rounded-2xl shadow-md p-4 border border-gray-100">
-                      <h3 className="flex items-center gap-2 text-base font-semibold text-[var(--mt-navy)] mb-2">
-                        {f.icon}
-                        {f.title}
-                      </h3>
-                      <p className="text-sm text-slate-600">{f.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        {/* Hero Section */}
+        <HeroSection
+          badge={{
+            icon: <Sparkles className="w-4 h-4"/>,
+            text: "USA Edition"
+          }}
+          title="Build the Minds That Work for You."
+          subtitle="Book more calls, close more deals, and let digital workers handle the busywork."
+          primaryCTA={{
+            label: "Book a 20‑min Fit Call",
+            href: "https://calendly.com/mindfultechnology",
+            external: true
+          }}
+          secondaryCTA={{
+            label: "Quick Lead Form",
+            href: "#lead",
+            external: false
+          }}
+          tertiaryCTA={{
+            label: "Call +1 (720) 891‑6563",
+            href: "tel:+17208916563",
+            external: false
+          }}
+          features={heroFeatures}
+          proofPoints={[
+            { icon: <Shield className="w-4 h-4"/>, text: "Guardrails on by default" },
+            { icon: <Clock className="w-4 h-4"/>, text: "Live in ~3 weeks" }
+          ]}
+        />
 
-        {/* Verticals */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[var(--mt-navy)]">Where We Shine</h2>
-          <p className="mt-2 text-slate-600">Primary US focus: Restaurants, MedSpas/Clinics, Auto Dealerships.</p>
-          <div className="mt-6 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {industries.map((x, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow-md border border-gray-100 p-4 flex items-center gap-2 hover:shadow-lg transition-shadow duration-300">
-                <span className="text-[var(--mt-teal)]">{x.icon}</span>
-                <span className="font-medium text-[var(--mt-navy)]">{x.label}</span>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Where We Shine - Industries */}
+        <FeatureGrid
+          title="Where We Shine"
+          description="Primary US focus: Restaurants, MedSpas/Clinics, Auto Dealerships."
+          features={industries}
+        />
 
-        {/* Offer Sections */}
-        <section className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8 items-start">
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-200 p-6 md:p-8">
-            <h3 className="text-2xl font-semibold text-[var(--mt-navy)] mb-4">What You Get</h3>
-            <List items={[
+        {/* What You Get / Outcomes */}
+        <ContentGrid
+          cards={[
+            {
+              title: "What You Get",
+              items: [
               "Audit + architecture of your stack",
               "On‑brand agent prompts, tone, and guardrails",
               "CRM wiring: pipelines, SLAs, dashboards",
               "Automations for intake, scheduling, follow‑up, and docs",
               "Team training + playbooks + security checklist",
-            ]}/>
-          </div>
-          
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-200 p-6 md:p-8">
-            <h3 className="text-2xl font-semibold text-[var(--mt-navy)] mb-4">Outcomes We Target</h3>
-            <List items={[
+              ]
+            },
+            {
+              title: "Outcomes We Target",
+              items: [
               "Speed‑to‑lead under 60 seconds",
               "+15–30% booking rate from inbound",
               "10+ hours/week saved per rep",
               "Fewer no‑shows with smart reminders",
               "Clean CRM data that actually helps decisions",
-            ]}/>
-          </div>
-        </section>
+              ]
+            }
+          ]}
+        />
 
-        {/* Dealerships Section */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <div className="rounded-3xl border bg-white p-6 md:p-8 shadow-sm">
-            <h3 className="text-xl md:text-2xl font-semibold text-[var(--mt-navy)]">Auto Dealerships — Book More Test Drives, Move Aged Units</h3>
-            <p className="mt-2 text-slate-700">Inventory concierge, instant text‑back, trade‑in & pre‑qual flows. Works with VinSolutions/DriveCentric/DealerSocket.*</p>
-            <div className="grid md:grid-cols-2 gap-6 mt-4">
-              {dealerPlans.map((p, i) => (
-                <div key={i} className="bg-white rounded-2xl shadow-md border border-gray-200 p-6">
-                  <h4 className="text-base font-semibold flex items-center justify-between text-[var(--mt-navy)] mb-2">
-                    <span>{p.name}</span>
-                    <span className="text-xs px-2 py-1 rounded-full bg-[var(--mt-teal)]/15 text-[var(--mt-navy)]">{p.price}</span>
-                  </h4>
-                  <p className="text-slate-600 text-sm mb-3">{p.blurb}</p>
-                  <List items={p.bullets}/>
-                </div>
-              ))}
-            </div>
-            <div className="text-xs text-slate-500 mt-3">
-              *Via API, email‑parser, or webhook bridges. TCPA consent and opt‑outs baked in.
-            </div>
-          </div>
-        </section>
+        {/* Auto Dealerships Section */}
+        <IndustryHighlightSection
+          title="Auto Dealerships — Book More Test Drives, Move Aged Units"
+          description="Inventory concierge, instant text‑back, trade‑in & pre‑qual flows. Works with VinSolutions/DriveCentric/DealerSocket.*"
+          plans={dealerPlans}
+          disclaimer="*Via API, email‑parser, or webhook bridges. TCPA consent and opt‑outs baked in."
+        />
 
-        {/* Pricing */}
-        <section id="pricing" className="max-w-7xl mx-auto px-6 py-16">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[var(--mt-navy)]">US Pricing</h2>
-          <p className="mt-2 text-slate-600">Pay by card or ACH. Month‑to‑month after setup. Cancel anytime.</p>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            {plans.map((p, i) => (
-              <div 
-                key={i} 
-                className={`bg-white rounded-3xl shadow-lg border p-6 md:p-8 ${p.featured ? 'ring-2 ring-[var(--mt-teal)]' : 'border-gray-200'}`}
-              >
-                <h3 className="text-xl font-semibold flex items-center justify-between text-[var(--mt-navy)] mb-4">
-                  <span>{p.name}</span>
-                  {p.featured && (
-                    <span className="text-xs px-2 py-1 rounded-full bg-[var(--mt-teal)]/15 text-[var(--mt-navy)]">
-                      Most Popular
-                    </span>
-                  )}
-                </h3>
-                <div className="text-2xl font-semibold text-[var(--mt-navy)] mb-2">{p.price}</div>
-                <p className="text-slate-600 text-sm mb-4">{p.blurb}</p>
-                <div className="mb-6">
-                  <List items={p.highlights}/>
-                </div>
-                <a 
-                  href="https://calendly.com/mindfultechnology" 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="block w-full mt-6 px-6 py-3 rounded-2xl mt-btn text-white font-semibold hover:shadow-lg transition-all duration-300 text-center"
-                >
-                  {p.cta}
-                </a>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Pricing Section */}
+        <PricingSection
+          title="U.S. Pricing"
+          description="Pay by card or ACH. Month‑to‑month after setup. Cancel anytime."
+          plans={plans}
+        />
 
         {/* Two‑Step Lead Form */}
-        <section id="lead" className="max-w-7xl mx-auto px-6 py-10">
+        <section id="lead" className="max-w-7xl mx-auto px-6 section-spacing">
           <LeadFormTwoStep />
         </section>
 
-        {/* FAQ */}
-        <section className="max-w-7xl mx-auto px-6 py-10">
-          <h2 className="text-2xl md:text-3xl font-semibold text-[var(--mt-navy)]">FAQ</h2>
-          <div className="mt-4 grid md:grid-cols-2 gap-6">
-            {faqs.map((f, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow-md border border-gray-200 p-6">
-                <h3 className="text-base font-semibold text-[var(--mt-navy)] mb-2">{f.q}</h3>
-                <p className="text-slate-700 text-sm">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* FAQ Section */}
+        <FAQSection
+          title="FAQ"
+          faqs={faqs}
+        />
 
-        {/* Contact */}
-        <section className="max-w-7xl mx-auto px-6 py-16">
-          <div className="rounded-3xl border bg-white p-6 md:p-8 shadow-sm">
-            <h3 className="text-xl md:text-2xl font-semibold text-[var(--mt-navy)]">Talk to a Solutions Architect</h3>
-            <p className="mt-2 text-slate-700">Bring a workflow you hate. We'll design a digital worker to eliminate it.</p>
-            <div className="mt-4 grid md:grid-cols-3 gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[var(--mt-teal)]"/> 
-                <a href="tel:+17208916563" className="underline hover:text-[var(--mt-teal)]">+1 (720) 891‑6563</a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[var(--mt-teal)]"/> 
-                <a href="mailto:info@mindfultech.services" className="underline hover:text-[var(--mt-teal)]">info@mindfultech.services</a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-[var(--mt-teal)]"/> 
-                <span className="text-slate-600">Atlanta • South Florida • Kentucky • Nationwide Remote</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Contact Section */}
+        <ContactSection
+          title="Talk to a Solutions Architect"
+          description="Bring a workflow you hate. We'll design a digital worker to eliminate it."
+          contact={{
+            phone: {
+              label: "+1 (720) 891‑6563",
+              href: "tel:+17208916563"
+            },
+            email: {
+              label: "info@mindfultech.services",
+              href: "mailto:info@mindfultech.services"
+            },
+            location: "Atlanta • South Florida • Kentucky • Nationwide Remote"
+          }}
+        />
 
         {/* Footer */}
-        <footer className="bg-[var(--mt-navy)] text-slate-200">
-          <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-4 gap-8 text-sm">
+        <footer className="bg-[#0F2A3F] text-slate-200">
+          <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
             <div>
               <div className="text-lg font-semibold">Mindful Tech</div>
-              <div className="mt-2 text-slate-300">
+              <div className="mt-2 text-slate-300 body-text">
                 Liberation through tech. We build ethical, practical automations that save time and drive revenue.
               </div>
               <div className="mt-3">
@@ -588,17 +501,17 @@ export default function USA_LandingPage() {
             <div>
               <div className="font-semibold">Company</div>
               <ul className="mt-2 space-y-1 text-slate-300">
-                <li><a className="hover:underline hover:text-[var(--mt-teal)]" href="#pricing">Pricing</a></li>
-                <li><a className="hover:underline hover:text-[var(--mt-teal)]" href="#lead">Get Started</a></li>
-                <li><a className="hover:underline hover:text-[var(--mt-teal)]" href="#">Careers</a></li>
+                <li><a className="hover:underline hover:text-[#2DB6A3]" href="#pricing">Pricing</a></li>
+                <li><a className="hover:underline hover:text-[#2DB6A3]" href="#lead">Get Started</a></li>
+                <li><a className="hover:underline hover:text-[#2DB6A3]" href="#" target="_blank" rel="noopener noreferrer">Careers</a></li>
               </ul>
             </div>
             <div>
               <div className="font-semibold">Legal</div>
               <ul className="mt-2 space-y-1 text-slate-300">
-                <li><a className="hover:underline hover:text-[var(--mt-teal)]" href="#">Privacy Policy (CCPA/CPRA)</a></li>
-                <li><a className="hover:underline hover:text-[var(--mt-teal)]" href="#">Terms of Service</a></li>
-                <li><a className="hover:underline hover:text-[var(--mt-teal)]" href="#">DPA & Subprocessors</a></li>
+                <li><a className="hover:underline hover:text-[#2DB6A3]" href="#" target="_blank" rel="noopener noreferrer">Privacy Policy (CCPA/CPRA)</a></li>
+                <li><a className="hover:underline hover:text-[#2DB6A3]" href="#" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
+                <li><a className="hover:underline hover:text-[#2DB6A3]" href="#" target="_blank" rel="noopener noreferrer">DPA & Subprocessors</a></li>
               </ul>
             </div>
             <div>
@@ -618,4 +531,3 @@ export default function USA_LandingPage() {
     </>
   );
 }
-

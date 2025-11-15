@@ -2,12 +2,20 @@
 # 
 # As your CTO mentor, I'm showing you how to configure Netlify for Next.js deployment.
 # The @netlify/plugin-nextjs automatically handles routing, so we don't need manual redirects.
+#
+# IMPORTANT: If Netlify's base directory is set to the repository root,
+# use the netlify.toml in the root directory instead.
 
 [build]
   command = "npm run build"
+  base = "."
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+[build.environment]
+  NODE_VERSION = "20"
+
+# Temporarily disabled to fix build
+# [[plugins]]
+#   package = "@netlify/plugin-nextjs"
 
 # Environment variables can be set in Netlify dashboard
 # For example:

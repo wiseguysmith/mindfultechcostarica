@@ -12,7 +12,7 @@ export const config = {
     name: 'MindfulTech',
     tagline: 'Let the agent handle that.',
     site: 'mindfultech.services',
-    email: 'Elijah@mindfultech.com',
+    email: 'info@mindfultech.services',
     address: 'Guanacaste, Tamarindo, Costa Rica',
   },
 
@@ -23,7 +23,7 @@ export const config = {
       phone: '+1 720-891-6563',
     },
     calendly: 'https://calendly.com/mindfultechnology',
-    email: 'Elijah@mindfultech.com',
+    email: 'info@mindfultech.services',
     facebook: 'https://facebook.com/mindfultech', // Placeholder for now
   },
 

@@ -1,0 +1,74 @@
+/**
+ * i18n Request Configuration
+ * 
+ * As your CTO mentor, I'm showing you how to set up next-intl for bilingual routing.
+ * This configuration handles locale detection and routing for our EN/ES site.
+ */
+
+import { getRequestConfig } from 'next-intl/server';
+import { config } from '@/lib/config';
+
+export default getRequestConfig(async ({ requestLocale }) => {
+  try {
+    // Handle requestLocale which might be undefined for non-i18n routes
+    let locale: string = config.i18n.defaultLocale;
+    
+    try {
+      if (requestLocale) {
+        const resolvedLocale = typeof requestLocale === 'string' 
+          ? requestLocale 
+          : await Promise.resolve(requestLocale);
+        
+        if (resolvedLocale && typeof resolvedLocale === 'string' && config.i18n.locales.includes(resolvedLocale as 'en' | 'es')) {
+          locale = resolvedLocale;
+        }
+      }
+    } catch (localeError) {
+      // If locale resolution fails, use default
+      console.warn('Locale resolution failed, using default:', localeError);
+    }
+
+    // Dynamically import messages for the locale - with error handling
+    let messages = {};
+    try {
+      messages = (await import(`../messages/${locale}.json`)).default;
+    } catch (importError) {
+      console.warn(`Failed to import messages for locale ${locale}, using empty object:`, importError);
+      // Try to load default locale as fallback
+      try {
+        messages = (await import(`../messages/${config.i18n.defaultLocale}.json`)).default;
+      } catch (defaultImportError) {
+        console.warn('Failed to import default locale messages:', defaultImportError);
+      }
+    }
+
+    return {
+      locale,
+      messages,
+      timeZone: 'America/Costa_Rica',
+      now: new Date(),
+    };
+  } catch (error) {
+    // Fallback to default locale if anything fails
+    console.error('Error in getRequestConfig:', error);
+    try {
+      const fallbackLocale = config.i18n.defaultLocale;
+      const fallbackMessages = (await import(`../messages/${fallbackLocale}.json`)).default;
+      return {
+        locale: fallbackLocale,
+        messages: fallbackMessages,
+        timeZone: 'America/Costa_Rica',
+        now: new Date(),
+      };
+    } catch (fallbackError) {
+      // Ultimate fallback - return minimal config
+      console.error('Fallback also failed:', fallbackError);
+      return {
+        locale: config.i18n.defaultLocale,
+        messages: {},
+        timeZone: 'America/Costa_Rica',
+        now: new Date(),
+      };
+    }
+  }
+});

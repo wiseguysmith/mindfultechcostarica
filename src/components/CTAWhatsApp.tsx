@@ -6,7 +6,7 @@
  * Notice how we use TypeScript interfaces for type safety and default props for flexibility.
  */
 
-import { config, getWhatsAppUrl } from '@/lib/config';
+import { getWhatsAppUrl } from '@/lib/config';
 
 interface CTAWhatsAppProps {
   label?: string;
