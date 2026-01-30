@@ -1,0 +1,205 @@
+{
+  "brand": {
+    "name": "MindfulTech",
+    "tagline": "Let the agent handle that.",
+    "site": "mindfultech.services"
+  },
+  "navigation": {
+    "home": "Home",
+    "lawOffices": "Law Offices",
+    "propertyManagers": "Property Managers",
+    "hotels": "Hotels",
+    "restaurants": "Restaurants",
+    "plans": "Plans",
+    "trial": "Trial",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "cta": {
+    "bookWhatsApp": "Book on WhatsApp",
+    "startTrial": "Start 7-day agente trial",
+    "scheduleCalendly": "Schedule on Calendly",
+    "getQuote": "Get a quote",
+    "downloadChecklist": "Download Law Intake Checklist (EN/ES)"
+  },
+  "home": {
+    "hero": {
+      "title": "Automate your business. Keep the Pura Vida.",
+      "subtitle": "Bilingual AI agentes that answer, book, and follow up—quietly.",
+      "primaryCTA": "Book on WhatsApp",
+      "secondaryCTA": "Start 7-day agente trial",
+      "tertiaryCTA": "Schedule on Calendly"
+    },
+    "outcomes": {
+      "title": "What you'll get",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "+20–40% inquiry capture",
+          "description": "Never miss another lead"
+        },
+        {
+          "icon": "⏰",
+          "title": "10+ hours/month back",
+          "description": "Focus on what matters"
+        },
+        {
+          "icon": "✍️",
+          "title": "Faster signatures",
+          "description": "DocuSign integration"
+        },
+        {
+          "icon": "📅",
+          "title": "Fewer no-shows",
+          "description": "Smart follow-ups"
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How it works",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Connect WhatsApp + IG + Calendar",
+          "description": "One-time setup takes minutes"
+        },
+        {
+          "number": "2",
+          "title": "Train your agente in one day (EN/ES)",
+          "description": "We handle the heavy lifting"
+        },
+        {
+          "number": "3",
+          "title": "Watch hours return and leads convert",
+          "description": "Results start immediately"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Perfect for",
+      "items": [
+        "Law Offices",
+        "Property Managers", 
+        "Hotels",
+        "Restaurants"
+      ]
+    },
+    "testimonial": {
+      "quote": "More tours, fewer tabs. Pura vida.",
+      "author": "DreamUp Property Management"
+    },
+    "finalCTA": {
+      "title": "Ready to get started?",
+      "subtitle": "Your first bilingual digital worker in 48 hours"
+    }
+  },
+  "lawOffices": {
+    "safetyBanner": "Legal advice is always provided by licensed humans. Sensitive exceptions and conflict checks → always human.",
+    "pitch": "Turn intake chaos into calm. Your agente gathers facts, screens bilingually, books consults, and chases signatures—so you practice law, not paperwork.",
+    "outcomes": {
+      "title": "Results for law offices",
+      "items": [
+        "Intake completeness ↑",
+        "No-shows ↓", 
+        "Faster e-sign + payments (DocuSign + Stripe)"
+      ]
+    }
+  },
+  "propertyManagers": {
+    "pitch": "Never miss a lead again. From inquiry → tour → application—handled.",
+    "capture": {
+      "title": "Capture & follow-ups",
+      "description": "Name, email, phone, budget, dates, bedrooms, area, financing; follow-up cadence 24h → 72h → 7d."
+    },
+    "testimonial": {
+      "quote": "The agente handles intake and follow-ups 24/7. We got hours back every week and zero dropped conversations.",
+      "author": "DreamUp Property Management"
+    }
+  },
+  "hotels": {
+    "pitch": "Turn \"hola, disponibilidad?\" into bookings—IG/WA to deposit without staff."
+  },
+  "restaurants": {
+    "pitch": "Auto-confirm tables, share today's specials, ask happy locals for 5-star reviews."
+  },
+  "plans": {
+    "intro": "Three plans tailored to your flow. Transparent, bilingual, human.",
+    "guarantee": "7-day free trial, no limits. Cancel anytime—keep the playbook.",
+    "pausePolicy": "Green-season pause up to 4 months/year at 50% to keep systems warm.",
+    "addons": "Calendly, DocuSign, Stripe."
+  },
+  "trial": {
+    "promise": "Your first bilingual digital worker in 48 hours—no limits for 7 days.",
+    "whatYouGet": {
+      "title": "What you get",
+      "items": [
+        "Auto-reply",
+        "Data capture", 
+        "Booking/lead flow",
+        "Review nudge",
+        "Basic analytics"
+      ]
+    },
+    "whatWeNeed": {
+      "title": "What we need",
+      "items": [
+        "FAQs",
+        "Prices",
+        "Hand-off rules",
+        "Calendar link"
+      ]
+    },
+    "qrCaption": "Sync with us"
+  },
+  "about": {
+    "ethos": "Costa Rica roots, mindful innovation, bilingual accessibility, data ethics.",
+    "northStar": "Let the agent handle that.",
+    "address": "Guanacaste, Tamarindo, Costa Rica"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Ready to automate your business? Let's talk.",
+    "form": {
+      "name": "Name",
+      "email": "Email", 
+      "whatsapp": "WhatsApp",
+      "preferredTime": "Preferred day/time",
+      "submit": "Send message"
+    }
+  },
+  "footer": {
+    "miniFAQ": {
+      "title": "Quick answers",
+      "items": [
+        {
+          "question": "Do I need a new app?",
+          "answer": "No. WhatsApp-first."
+        },
+        {
+          "question": "How fast can we be live?",
+          "answer": "48 hours with your FAQs/prices."
+        },
+        {
+          "question": "Will a human review sensitive stuff?",
+          "answer": "Always."
+        },
+        {
+          "question": "What's the risk?",
+          "answer": "7-day free trial; green-season pause."
+        },
+        {
+          "question": "What do you need from me?",
+          "answer": "FAQs, pricing, hand-off rules, calendar link."
+        }
+      ]
+    },
+    "address": "Guanacaste, Tamarindo, Costa Rica",
+    "email": "Elijah@mindfultech.com",
+    "rights": "© 2024 MindfulTech. All rights reserved."
+  }
+}
+
+
+
+
+

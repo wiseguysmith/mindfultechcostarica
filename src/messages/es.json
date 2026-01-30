@@ -1,0 +1,205 @@
+{
+  "brand": {
+    "name": "MindfulTech",
+    "tagline": "Deja que el agente se encargue.",
+    "site": "mindfultech.services"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "lawOffices": "Despachos Legales",
+    "propertyManagers": "Administradores",
+    "hotels": "Hoteles",
+    "restaurants": "Restaurantes",
+    "plans": "Planes",
+    "trial": "Prueba",
+    "about": "Acerca de",
+    "contact": "Contacto"
+  },
+  "cta": {
+    "bookWhatsApp": "Agendar por WhatsApp",
+    "startTrial": "Comenzar prueba de 7 días",
+    "scheduleCalendly": "Agendar en Calendly",
+    "getQuote": "Obtener cotización",
+    "downloadChecklist": "Descargar Lista de Intake Legal (EN/ES)"
+  },
+  "home": {
+    "hero": {
+      "title": "Automatiza tu negocio. Mantén la Pura Vida.",
+      "subtitle": "Agentes de IA bilingües que responden, reservan y dan seguimiento—en silencio.",
+      "primaryCTA": "Agendar por WhatsApp",
+      "secondaryCTA": "Comenzar prueba de 7 días",
+      "tertiaryCTA": "Agendar en Calendly"
+    },
+    "outcomes": {
+      "title": "Lo que obtendrás",
+      "items": [
+        {
+          "icon": "📈",
+          "title": "+20–40% captura de consultas",
+          "description": "Nunca pierdas otro lead"
+        },
+        {
+          "icon": "⏰",
+          "title": "10+ horas/mes de vuelta",
+          "description": "Enfócate en lo importante"
+        },
+        {
+          "icon": "✍️",
+          "title": "Firmas más rápidas",
+          "description": "Integración con DocuSign"
+        },
+        {
+          "icon": "📅",
+          "title": "Menos no-shows",
+          "description": "Seguimientos inteligentes"
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Conecta WhatsApp + IG + Calendario",
+          "description": "Configuración única en minutos"
+        },
+        {
+          "number": "2",
+          "title": "Entrena tu agente en un día (EN/ES)",
+          "description": "Nosotros hacemos el trabajo pesado"
+        },
+        {
+          "number": "3",
+          "title": "Ve cómo regresan las horas y se convierten los leads",
+          "description": "Los resultados empiezan inmediatamente"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Perfecto para",
+      "items": [
+        "Despachos Legales",
+        "Administradores de Propiedades",
+        "Hoteles",
+        "Restaurantes"
+      ]
+    },
+    "testimonial": {
+      "quote": "Más tours, menos pestañas. Pura vida.",
+      "author": "DreamUp Property Management"
+    },
+    "finalCTA": {
+      "title": "¿Listo para empezar?",
+      "subtitle": "Tu primer trabajador digital bilingüe en 48 horas"
+    }
+  },
+  "lawOffices": {
+    "safetyBanner": "El asesoramiento legal siempre lo brindan profesionales con licencia. Excepciones y conflictos → siempre humano.",
+    "pitch": "Convierte el caos del intake en calma. Tu agente recopila datos, filtra en EN/ES, agenda consultas y persigue firmas—tú ejerces, no papeleo.",
+    "outcomes": {
+      "title": "Resultados para despachos legales",
+      "items": [
+        "Completitud del intake ↑",
+        "No-shows ↓",
+        "E-firma + pagos más rápidos (DocuSign + Stripe)"
+      ]
+    }
+  },
+  "propertyManagers": {
+    "pitch": "Nunca pierdas un lead. De la consulta al tour y la solicitud—resuelto.",
+    "capture": {
+      "title": "Captura y seguimientos",
+      "description": "Nombre, email, teléfono, presupuesto, fechas, habitaciones, área, financiamiento; cadencia de seguimiento 24h → 72h → 7d."
+    },
+    "testimonial": {
+      "quote": "El agente maneja intake y seguimientos 24/7. Recuperamos horas cada semana y no se pierde ninguna conversación.",
+      "author": "DreamUp Property Management"
+    }
+  },
+  "hotels": {
+    "pitch": "Convierte \"hola, ¿disponibilidad?\" en reservas—IG/WA a depósito sin personal."
+  },
+  "restaurants": {
+    "pitch": "Auto-confirmar mesas, compartir especiales, pedir reseñas 5★."
+  },
+  "plans": {
+    "intro": "Tres planes adaptados a tu flujo. Transparente, bilingüe, humano.",
+    "guarantee": "Prueba gratuita de 7 días, sin límites. Cancela cuando quieras—mantén el playbook.",
+    "pausePolicy": "Pausa de temporada verde hasta 4 meses/año al 50% para mantener sistemas activos.",
+    "addons": "Calendly, DocuSign, Stripe."
+  },
+  "trial": {
+    "promise": "Tu primer trabajador digital bilingüe en 48 horas—sin límites por 7 días.",
+    "whatYouGet": {
+      "title": "Lo que obtienes",
+      "items": [
+        "Auto-respuesta",
+        "Captura de datos",
+        "Flujo de reservas/leads",
+        "Recordatorio de reseñas",
+        "Analíticas básicas"
+      ]
+    },
+    "whatWeNeed": {
+      "title": "Lo que necesitamos",
+      "items": [
+        "FAQs",
+        "Precios",
+        "Reglas de transferencia",
+        "Enlace de calendario"
+      ]
+    },
+    "qrCaption": "Sincroniza con nosotros"
+  },
+  "about": {
+    "ethos": "Raíces costarricenses, innovación consciente, accesibilidad bilingüe, ética de datos.",
+    "northStar": "Deja que el agente se encargue.",
+    "address": "Guanacaste, Tamarindo, Costa Rica"
+  },
+  "contact": {
+    "title": "Ponte en contacto",
+    "subtitle": "¿Listo para automatizar tu negocio? Hablemos.",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "preferredTime": "Día/hora preferida",
+      "submit": "Enviar mensaje"
+    }
+  },
+  "footer": {
+    "miniFAQ": {
+      "title": "Respuestas rápidas",
+      "items": [
+        {
+          "question": "¿Necesito una nueva app?",
+          "answer": "No. WhatsApp primero."
+        },
+        {
+          "question": "¿Qué tan rápido podemos estar en vivo?",
+          "answer": "48 horas con tus FAQs/precios."
+        },
+        {
+          "question": "¿Un humano revisará cosas sensibles?",
+          "answer": "Siempre."
+        },
+        {
+          "question": "¿Cuál es el riesgo?",
+          "answer": "Prueba gratuita de 7 días; pausa de temporada verde."
+        },
+        {
+          "question": "¿Qué necesitas de mí?",
+          "answer": "FAQs, precios, reglas de transferencia, enlace de calendario."
+        }
+      ]
+    },
+    "address": "Guanacaste, Tamarindo, Costa Rica",
+    "email": "Elijah@mindfultech.com",
+    "rights": "© 2024 MindfulTech. Todos los derechos reservados."
+  }
+}
+
+
+
+
+

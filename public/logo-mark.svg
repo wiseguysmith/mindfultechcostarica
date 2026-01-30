@@ -1,0 +1,55 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- MindfulTech Logo - Sun spiral + wave design -->
+  <defs>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FF4500;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FF4500;stop-opacity:0.2" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Circle background -->
+  <circle cx="32" cy="32" r="32" fill="#8B3A3A"/>
+  
+  <!-- Water section (bottom third) -->
+  <path d="M0 42.67C0 42.67 16 32 32 42.67C48 53.33 64 42.67 64 42.67V64H0V42.67Z" fill="#2C4A6B"/>
+  
+  <!-- Wave separator -->
+  <path d="M0 42.67C16 32 32 42.67 48 32C64 21.33 64 42.67 64 42.67" 
+        stroke="#F5F5DC" 
+        stroke-width="2" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <!-- Sun spiral center -->
+  <circle cx="32" cy="24" r="3" fill="#F5F5DC"/>
+  
+  <!-- Sun spiral -->
+  <path d="M32 24C32 24 28 20 24 20C20 20 20 24 20 28C20 32 24 32 28 32C32 32 36 28 36 24C36 20 32 20 28 20C24 20 20 24 20 28" 
+        stroke="#F5F5DC" 
+        stroke-width="1.5" 
+        fill="none" 
+        stroke-linecap="round"/>
+  
+  <!-- Sun rays -->
+  <g stroke="#F5F5DC" stroke-width="1.5" fill="none" stroke-linecap="round">
+    <!-- Top ray -->
+    <path d="M32 8C32 8 32 16 32 20"/>
+    <!-- Top-right ray -->
+    <path d="M44 12C40 16 36 20 32 20"/>
+    <!-- Right ray -->
+    <path d="M48 24C44 24 40 24 36 24"/>
+    <!-- Bottom-right ray -->
+    <path d="M44 36C40 32 36 28 32 28"/>
+    <!-- Bottom ray -->
+    <path d="M32 40C32 40 32 32 32 28"/>
+    <!-- Bottom-left ray -->
+    <path d="M20 36C24 32 28 28 32 28"/>
+    <!-- Left ray -->
+    <path d="M16 24C20 24 24 24 28 24"/>
+    <!-- Top-left ray -->
+    <path d="M20 12C24 16 28 20 32 20"/>
+  </g>
+  
+  <!-- Sun glow effect -->
+  <circle cx="32" cy="24" r="8" fill="url(#sunGlow)"/>
+</svg>
